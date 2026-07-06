@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reddit Marketing Roadmap — Agen.co</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F2EC; --card:#FFFFFF; --line:#EAE2D5; --line2:#DED2BE;
+  --ink:#1E1B2E; --muted:#6B6478; --faint:#A79D8C;
+  --accent:#4F3CC9; --accent-soft:#ECE6FB; --accent-tint:#F6F3FE; --accent-ink:#33267A;
+  --ai:#0C8599; --ai-soft:#DCF0F1; --ai-tint:#F1FAFA; --ai-ink:#0A5C6B;
+  --pos:#1E9D6B; --pos-soft:#E1F5EC;
+  --neg:#D6455B; --neg-soft:#FBE6EA;
+  --amber:#C9822E; --amber-soft:#FBEEDD;
+  --blue:#3454D1; --blue-soft:#E4EAFC;
+  --shadow:0 1px 2px rgba(30,27,46,.05),0 8px 24px rgba(30,27,46,.06);
+  --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--accent-soft)}
+img,svg{display:block}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:60;background:rgba(246,242,236,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.bar{max-width:1280px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:16.5px;letter-spacing:-.02em}
+.brand .mark{width:26px;height:26px;border-radius:8px;background:linear-gradient(155deg,var(--accent),#2A1F70);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:800}
+.pill{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink);background:var(--accent-soft);border:1px solid #D9CEFA;padding:4px 10px;border-radius:999px}
+.datepill{margin-left:auto;font-family:'JetBrains Mono';font-size:11.5px;color:var(--muted);border:1px solid var(--line2);padding:5px 10px;border-radius:8px;white-space:nowrap}
+
+/* ---------- global page nav ---------- */
+.gnav{border-bottom:1px solid var(--line);background:var(--card)}
+.gnav-inner{max-width:1280px;margin:0 auto;padding:8px 28px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.gnav .glabel{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-right:4px}
+.gnav a{font-size:12px;font-weight:600;color:var(--muted);padding:6px 11px;border-radius:8px;transition:.15s;white-space:nowrap}
+.gnav a:hover{color:var(--ink);background:var(--accent-tint)}
+.gnav a.active{color:var(--accent);background:var(--accent-tint)}
+.gnav a.soon{color:var(--faint);opacity:.6}
+
+.tabs{border-bottom:1px solid var(--line);background:rgba(246,242,236,.92)}
+.tabrow{max-width:1280px;margin:0 auto;padding:0 28px;display:flex;gap:4px}
+.tabrow a{font-size:13px;font-weight:600;color:var(--muted);padding:12px 16px;border-bottom:2.5px solid transparent;white-space:nowrap;transition:.15s}
+.tabrow a:hover{color:var(--ink)}
+.tabrow a.active{color:var(--accent-ink);border-color:var(--accent)}
+.tabrow a.active.ai-active{color:var(--ai-ink);border-color:var(--ai)}
+
+/* ---------- layout ---------- */
+.shell{max-width:1280px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:236px 1fr;gap:44px}
+aside{padding-top:36px;position:sticky;top:140px;align-self:start;max-height:calc(100vh - 156px);overflow-y:auto}
+aside::-webkit-scrollbar{width:5px}
+aside::-webkit-scrollbar-thumb{background:var(--line2);border-radius:4px}
+.navgroup{margin-bottom:22px}
+.navgroup .gt{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);padding:0 10px 8px}
+.navgroup a{display:block;font-size:12.5px;font-weight:500;color:var(--muted);padding:6px 10px;border-radius:8px;margin-bottom:1px;transition:.15s}
+.navgroup a:hover{color:var(--ink);background:var(--card)}
+.navgroup a.active{color:var(--accent-ink);background:var(--accent-tint);font-weight:600}
+.navgroup.ai a.active{color:var(--ai-ink);background:var(--ai-tint)}
+
+main{padding:36px 0 120px;min-width:0}
+section.navsec{padding-top:40px;scroll-margin-top:112px}
+.part-divider{padding:60px 0 28px;display:flex;align-items:center;gap:16px}
+.part-divider .num{font-family:'JetBrains Mono';font-weight:800;font-size:13px;color:#fff;background:var(--accent);border-radius:8px;padding:6px 11px;flex:none}
+.part-divider.ai .num{background:var(--ai)}
+.part-divider .txt b{display:block;font-size:19px;font-weight:800;letter-spacing:-.02em}
+.part-divider .txt span{font-size:12.5px;color:var(--muted)}
+.part-divider .rule{flex:1;height:1px;background:var(--line2)}
+
+.eyebrow{display:flex;align-items:center;gap:9px;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.eyebrow.ai{color:var(--ai)}
+h2{font-size:25px;font-weight:800;letter-spacing:-.03em;margin-bottom:6px}
+h2 .hl{color:var(--accent)}
+.sub{color:var(--muted);font-size:14px;margin-bottom:22px;max-width:760px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.grid{display:grid;gap:14px}
+
+/* ---------- cover ---------- */
+.cover{margin-top:30px;border-radius:20px;padding:44px 40px;background:radial-gradient(circle at 15% 15%,#3C2E9E 0,transparent 55%),radial-gradient(circle at 85% 85%,#1F1858 0,transparent 55%),linear-gradient(155deg,#241B5E,#120E33);color:#fff;position:relative;overflow:hidden}
+.cover::after{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.055) 1px,transparent 1px);background-size:22px 22px;opacity:.5}
+.cover .inner{position:relative;z-index:1}
+.cover .kicker{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#C9BEFF;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);padding:6px 12px;border-radius:999px;margin-bottom:20px}
+.cover h1{font-size:38px;font-weight:800;letter-spacing:-.03em;line-height:1.12;max-width:780px;margin-bottom:14px}
+.cover h1 span{color:#B9A9FF}
+.cover .tag{font-size:15px;color:#D4CDF4;max-width:640px;margin-bottom:30px}
+.metarow{display:flex;gap:34px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.14);padding-top:20px}
+.metarow .m .k{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:#9C90D6;margin-bottom:5px}
+.metarow .m .v{font-family:'JetBrains Mono';font-weight:700;font-size:18px;color:#fff}
+
+/* ---------- north star cards ---------- */
+.starGrid{grid-template-columns:repeat(5,1fr)}
+.starcard{padding:16px 15px;border-radius:12px;position:relative}
+.starcard .ic{width:30px;height:30px;border-radius:9px;background:var(--accent-tint);color:var(--accent-ink);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;margin-bottom:10px}
+.starcard b{display:block;font-size:12.5px;font-weight:700;line-height:1.35;margin-bottom:3px}
+.starcard span{font-size:11px;color:var(--muted)}
+.starcard.rec{border:1.5px solid var(--accent);background:linear-gradient(165deg,#fff,var(--accent-tint));box-shadow:0 4px 18px rgba(79,60,201,.14)}
+.starcard.rec .ic{background:var(--accent);color:#fff}
+.rectag{position:absolute;top:-9px;right:12px;font-size:9.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:var(--accent);padding:3px 8px;border-radius:6px}
+
+.logicwrap{display:flex;flex-direction:column;gap:0;margin-top:18px}
+.logicstep{display:grid;grid-template-columns:34px 1fr;gap:16px;position:relative;padding-bottom:22px}
+.logicstep:last-child{padding-bottom:0}
+.logicstep .lc{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;font-family:'JetBrains Mono';font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;position:relative;z-index:1}
+.logicstep .ll{position:absolute;top:34px;bottom:-22px;left:17px;width:2px;background:var(--accent-soft)}
+.logicstep:last-child .ll{display:none}
+.logicstep .lt b{display:block;font-size:13.5px;font-weight:700;margin-bottom:2px}
+.logicstep .lt span{font-size:12.5px;color:var(--muted)}
+.footline{font-size:12.5px;color:var(--muted);margin:16px 0 4px;padding:12px 16px;background:var(--accent-tint);border-radius:10px;border:1px solid #E1D9FB}
+
+.whygrid{grid-template-columns:1fr 1fr}
+.claim{display:flex;gap:10px;padding:13px 0;border-bottom:1px solid var(--line);font-size:13px}
+.claim:last-child{border-bottom:none}
+.claim i{width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none;margin-top:6px}
+
+/* ---------- tables ---------- */
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);padding:11px 14px;border-bottom:1px solid var(--line2)}
+.tbl td{padding:13px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:hover td{background:var(--accent-tint)}
+.tbl .lab{font-weight:700}
+
+.pillrow{display:flex;gap:5px;flex-wrap:wrap}
+.subpill{font-size:10.5px;font-weight:600;color:var(--accent-ink);background:var(--accent-tint);border:1px solid #DDD2FA;padding:3px 8px;border-radius:6px;white-space:nowrap}
+
+.tierbadge{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:4px 9px;border-radius:6px}
+.t1{background:var(--neg-soft);color:#8E1E36}
+.t2{background:var(--amber-soft);color:#8A5A18}
+.t3{background:var(--blue-soft);color:#1F3B99}
+
+/* ---------- methodology cards ---------- */
+.methgrid{grid-template-columns:repeat(3,1fr)}
+.methcard{padding:24px 22px}
+.methcard .no{font-family:'JetBrains Mono';font-size:26px;font-weight:800;color:var(--accent-soft);-webkit-text-stroke:1.4px var(--accent);color:transparent;margin-bottom:10px;display:block}
+.methcard h3{font-size:14.5px;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
+.methcard p{font-size:12.5px;color:var(--muted)}
+
+/* ---------- account cards ---------- */
+.acctgrid{grid-template-columns:1fr 1fr}
+.acctcard{padding:20px 22px}
+.acctcard .head{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.acctcard .ic{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex:none}
+.acctcard h3{font-size:14.5px;font-weight:700}
+.acctcard p{font-size:12.5px;color:var(--muted);margin-bottom:12px}
+.ic-a{background:var(--accent-soft);color:var(--accent-ink)}
+.ic-b{background:var(--blue-soft);color:#1F3B99}
+.ic-c{background:var(--pos-soft);color:#0F5A3D}
+.ic-d{background:var(--amber-soft);color:#8A5A18}
+.callout{padding:16px 18px;border-radius:12px;background:var(--accent-tint);border:1px solid #E1D9FB;font-size:12.5px;color:var(--accent-ink);margin-top:4px}
+.callout b{font-weight:700}
+
+/* ---------- objective box ---------- */
+.objbox{display:flex;gap:10px;align-items:flex-start;padding:12px 15px;border-radius:10px;background:var(--accent-tint);border:1px solid #E1D9FB;font-size:12.5px;margin-bottom:16px}
+.objbox b{color:var(--accent-ink);font-weight:700;white-space:nowrap}
+.ai .objbox{background:var(--ai-tint);border-color:#BFE6EA}
+.ai .objbox b{color:var(--ai-ink)}
+.precface{padding:16px 18px;border-radius:12px;background:#FBF8F2;border:1px dashed var(--line2);font-size:12.5px;color:var(--muted);margin-bottom:30px}
+
+/* ---------- roadmap ---------- */
+.roadmap{position:relative}
+.rmap-item{display:grid;grid-template-columns:52px 1fr;gap:20px;position:relative;padding-bottom:34px}
+.rmap-item:last-child{padding-bottom:0}
+.node-col{position:relative;display:flex;justify-content:center}
+.node{width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono';font-weight:700;font-size:15px;box-shadow:0 0 0 6px var(--accent-tint);z-index:2;flex:none}
+.rmap-item .line{position:absolute;top:40px;bottom:-34px;width:3px;left:50%;transform:translateX(-50%);background:linear-gradient(var(--accent),var(--accent-soft));z-index:1}
+.rmap-item:last-child .line{display:none}
+.rmap-card{padding:22px 24px}
+.rmap-card h3{font-size:16px;font-weight:800;letter-spacing:-.01em;margin-bottom:12px}
+.rmap-card h4{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:16px 0 8px}
+.rmap-card h4:first-of-type{margin-top:4px}
+.rmap-card p{font-size:13px;color:var(--muted);margin-bottom:4px}
+.ai .node{background:var(--ai);box-shadow:0 0 0 6px var(--ai-tint)}
+.ai .rmap-item .line{background:linear-gradient(var(--ai),var(--ai-soft))}
+
+.minicards{grid-template-columns:1fr 1fr;margin-top:6px}
+.minicard{padding:16px 18px}
+.minicard h5{font-size:12.5px;font-weight:700;margin-bottom:8px}
+.minicard ul{padding-left:16px;font-size:12.5px;color:var(--muted)}
+.minicard li{margin-bottom:5px}
+
+.champion{border:1.5px solid var(--accent);background:linear-gradient(165deg,#fff,var(--accent-tint));border-radius:12px;padding:16px 18px;margin-top:14px;display:flex;gap:12px;align-items:flex-start}
+.champion .star{font-size:18px;flex:none}
+.champion b{color:var(--accent-ink)}
+.champion span{font-size:12.5px;color:var(--muted);display:block;margin-top:3px}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line);padding:36px 0 60px}
+.methodology{font-size:12px;color:var(--faint);max-width:920px}
+
+@media (max-width:920px){
+  .shell{grid-template-columns:1fr}
+  aside{display:none}
+  .starGrid,.methgrid,.acctgrid,.whygrid,.minicards{grid-template-columns:1fr}
+  .cover h1{font-size:28px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="gnav">
+    <div class="gnav-inner">
+      <span class="glabel">agen.co</span>
+      <a href="overview.html">Overview</a>
+      <a href="Agen_Reddit_Marketing_Roadmap.html" class="active">Roadmap</a>
+      <a href="AI_Agent_Governance_Reddit_Competitive_Intelligence.html">Competitive Analysis</a>
+      <a href="AI_Agent_Security_Reddit_Market_Intelligence.html">Market Analysis</a>
+      <a href="agenco_Subreddit_Intelligence_Map.html">Subreddit Mapping</a>
+    </div>
+  </div>
+  <div class="bar">
+    <div class="brand"><span class="mark">A</span> Agen.co</div>
+    <span class="pill">Reddit Marketing Roadmap</span>
+    <span class="datepill">Prepared — July 2026</span>
+  </div>
+  <div class="tabs">
+    <div class="tabrow" id="tabrow">
+      <a href="#part-foundation" data-part="foundation">① Foundation</a>
+      <a href="#part-execution" data-part="execution">② Execution Sprints</a>
+      <a href="#part-ai" data-part="ai">③ AI &amp; Search Sprints</a>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+  <aside>
+    <div class="navgroup">
+      <div class="gt">① Foundation</div>
+      <a href="#goals" data-nav>Goals</a>
+      <a href="#icp">ICP &amp; Target Audience</a>
+      <a href="#subreddits">Target Subreddits</a>
+      <a href="#methodologies">Methodologies</a>
+      <a href="#accounts">Account Setup</a>
+    </div>
+    <div class="navgroup">
+      <div class="gt">② Execution Sprints</div>
+      <a href="#sprint-1">1 · Account Setup &amp; Warmup</a>
+      <a href="#sprint-2">2 · Research &amp; Analysis</a>
+      <a href="#sprint-3">3 · Monitoring &amp; Response</a>
+      <a href="#sprint-4">4 · Community-Based Authority</a>
+      <a href="#sprint-5">5 · Topic Advocacy</a>
+      <a href="#sprint-6">6 · Launch a Subreddit</a>
+      <a href="#sprint-7">7 · Champion Solution Chain</a>
+      <a href="#sprint-8">8 · Moderator Partnership</a>
+    </div>
+    <div class="navgroup ai">
+      <div class="gt">③ AI &amp; Search Sprints</div>
+      <a href="#ai-1">9 · Keyword Targeting</a>
+      <a href="#ai-2">10 · Google AI Overviews</a>
+      <a href="#ai-3">11 · Reddit Answers</a>
+      <a href="#ai-4">12 · LLM &amp; AI Citations</a>
+    </div>
+  </aside>
+
+  <main>
+
+    <!-- ===================== COVER ===================== -->
+    <div class="cover">
+      <div class="inner">
+        <div class="kicker">● Reddit Marketing Roadmap</div>
+        <h1>Reddit Marketing Roadmap, <span>Customized for Agen.co</span></h1>
+        <p class="tag">Agen.co is Frontegg's identity-aware control layer for agentic AI — it lets enterprises observe, govern, and enforce how AI agents, copilots, and MCP connections access internal apps and data, on one foundation whether the agent is internal ("Agen for Work") or exposing your own SaaS product to agents like ChatGPT ("Agen for SaaS").</p>
+        <div class="metarow">
+          <div class="m"><div class="k">Prepared for</div><div class="v">Agen.co (Frontegg)</div></div>
+          <div class="m"><div class="k">Date</div><div class="v">July 2026</div></div>
+          <div class="m"><div class="k">Foundation modules</div><div class="v">5</div></div>
+          <div class="m"><div class="k">Subreddits tracked</div><div class="v">11</div></div>
+          <div class="m"><div class="k">Sprints mapped</div><div class="v">12</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== PART 1: FOUNDATION ===================== -->
+    <div id="part-foundation"></div>
+
+    <section class="navsec" id="goals">
+      <div class="eyebrow"><span>01</span> Foundation</div>
+      <h2>Your North <span class="hl">Star</span></h2>
+      <p class="sub">Reddit has become a high-value channel for enterprise security and identity infrastructure vendors specifically — it's where practitioners vet tools before a vendor call ever happens, it feeds Google's AI Overviews, and it's increasingly the corpus LLMs cite when someone asks "how do I secure MCP" or "how do I stop agents from over-permissioning themselves." Agen.co should pick one North Star outcome to run this whole program against.</p>
+
+      <div class="grid starGrid">
+        <div class="card starcard"><div class="ic">↗</div><b>Rank in Google Search</b><span>Reddit threads ranking for target keywords</span></div>
+        <div class="card starcard"><div class="ic">✦</div><b>Get Cited by LLMs</b><span>Show up in ChatGPT / Claude / Perplexity answers</span></div>
+        <div class="card starcard"><div class="ic">◎</div><b>Brand Awareness</b><span>Use Reddit as an always-on marketing channel</span></div>
+        <div class="card starcard rec"><span class="rectag">Recommended</span><div class="ic">⬡</div><b>Authority, Trust &amp; Community</b><span>Become the credible voice on agent identity &amp; MCP security</span></div>
+        <div class="card starcard"><div class="ic">◈</div><b>Manage Reputation</b><span>Shape the narrative on agent-governance incidents</span></div>
+      </div>
+
+      <div class="callout" style="margin-top:14px">
+        <b>Why this fits Agen.co specifically:</b> this is an enterprise security/identity infrastructure sale — CISOs, platform engineers, and SaaS product leaders don't buy off an ad, they buy off trust built in the rooms where they already argue about "God-mode agents" and MCP risk (r/cybersecurity, r/mcp, r/AI_Agents). Sales cycles are long and consultative, so awareness or ranking alone won't close deals without credibility behind the brand first. Authority compounds — search rank and LLM citations follow naturally once Agen.co is a recognized, trusted voice in these communities, which the Part ③ sprints are built to capture.
+      </div>
+
+      <p class="footline">What Agen.co wants out of Reddit dictates how every account, sprint, and content pillar in this roadmap runs — this North Star is the filter every decision below should pass through.</p>
+
+      <div class="logicwrap">
+        <div class="logicstep"><div class="lc">1</div><div class="ll"></div><div class="lt"><b>Focus on Reddit and its audience first</b><span>Show up where security engineers, CISOs, and agent builders already argue about MCP risk and agent identity — not where Agen.co wishes they were.</span></div></div>
+        <div class="logicstep"><div class="lc">2</div><div class="ll"></div><div class="lt"><b>Genuine presence compounds into authority, trust, community, and advocates</b><span>Real answers in r/cybersecurity and r/mcp threads, given consistently, build the kind of reputation that ad spend can't buy in this audience.</span></div></div>
+        <div class="logicstep"><div class="lc">3</div><div class="lt"><b>Visibility follows</b><span>Ranking in Reddit's own AI Overview, Google search, and LLM citations is the downstream reward of a real community presence — not a separate initiative.</span></div></div>
+      </div>
+    </section>
+
+    <section class="navsec" id="why">
+      <div class="eyebrow"><span>—</span> Foundation</div>
+      <h2>Why Reddit Matters for <span class="hl">Agen.co</span></h2>
+      <p class="sub">Agen.co's actual buyers — security engineers deciding what gets to touch production, CISOs signing off on AI risk — are already having this exact argument on Reddit today, and Agen.co has almost no presence in it yet.</p>
+      <div class="grid whygrid">
+        <div class="card panel-lite" style="padding:20px 22px">
+          <div class="claim"><i></i>Competitors like Noma Security and WitnessAI are already active in r/cybersecurity and r/mcp threads about MCP server risk — Agen.co isn't part of that conversation yet.</div>
+          <div class="claim"><i></i>Microsoft's Entra Agent ID and IBM watsonx get cited by name whenever "agent governance" or "AI agent identity" comes up on r/AI_Agents — brand recall Agen.co can compete for directly.</div>
+          <div class="claim"><i></i>Threads about "MCP server security" and "stop AI agents from over-permissioning" already rank on Google's first page for the exact keywords Agen.co's product page targets.</div>
+        </div>
+        <div class="card panel-lite" style="padding:20px 22px">
+          <div class="claim"><i></i>Gartner's own prediction that 25% of enterprise breaches will stem from AI agent abuse is exactly the kind of stat that gets quoted (and debated) in r/netsec threads Agen.co should be part of.</div>
+          <div class="claim"><i></i>"Agen for SaaS" buyers — SaaS founders deciding whether to expose their product via MCP — are actively asking build-vs-buy questions in r/SaaS and r/ExperiencedDevs right now.</div>
+          <div class="claim"><i></i>Reddit Answers and Google AI Overviews increasingly pull from Reddit threads on "least privilege AI agent" and "agent identity" — an open visibility gap Agen.co can claim early.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="navsec" id="icp">
+      <div class="eyebrow"><span>02</span> Foundation</div>
+      <h2>ICP &amp; Target <span class="hl">Audience</span></h2>
+      <p class="sub">Six buyer segments across Agen.co's two motions — governing agents inside the enterprise ("Agen for Work") and exposing a SaaS product safely to agents ("Agen for SaaS").</p>
+      <div class="card">
+        <table class="tbl">
+          <thead><tr><th style="width:19%">Audience Segment</th><th style="width:24%">Who They Are</th><th style="width:27%">What They Need</th><th>Where They Are on Reddit</th></tr></thead>
+          <tbody>
+            <tr><td class="lab">Security &amp; Platform Engineers</td><td>Implement and operate agent/MCP access controls day to day.</td><td>Proof it works in production — not another dashboard.</td><td><div class="pillrow"><span class="subpill">r/cybersecurity</span><span class="subpill">r/devops</span><span class="subpill">r/netsec</span></div></td></tr>
+            <tr><td class="lab">CISOs &amp; Security Leaders</td><td>Own AI risk sign-off and board-level reporting.</td><td>Audit trails and compliance mapping, not hype.</td><td><div class="pillrow"><span class="subpill">r/cybersecurity</span><span class="subpill">r/GRC</span><span class="subpill">r/netsec</span></div></td></tr>
+            <tr><td class="lab">AI / Agent Builders</td><td>Build agents that need to call internal tools &amp; data.</td><td>An MCP layer that won't get flagged in a security review.</td><td><div class="pillrow"><span class="subpill">r/AI_Agents</span><span class="subpill">r/mcp</span><span class="subpill">r/LLMDevs</span></div></td></tr>
+            <tr><td class="lab">SaaS Product &amp; Eng Leaders</td><td>Deciding whether to expose their product via MCP.</td><td>A fast, safe path to "ChatGPT can use my app."</td><td><div class="pillrow"><span class="subpill">r/SaaS</span><span class="subpill">r/mcp</span><span class="subpill">r/ExperiencedDevs</span></div></td></tr>
+            <tr><td class="lab">IT &amp; Identity Admins</td><td>Manage provisioning, roles, and access reviews.</td><td>Agent identity that slots into existing IAM, not a rip-and-replace.</td><td><div class="pillrow"><span class="subpill">r/sysadmin</span><span class="subpill">r/devops</span><span class="subpill">r/GRC</span></div></td></tr>
+            <tr><td class="lab">Enterprise AI / Ops Teams</td><td>Rolling out ChatGPT/Claude connectors org-wide.</td><td>Guardrails in place before opening the floodgates.</td><td><div class="pillrow"><span class="subpill">r/OpenAI</span><span class="subpill">r/AI_Agents</span><span class="subpill">r/mcp</span></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="navsec" id="subreddits">
+      <div class="eyebrow"><span>03</span> Foundation</div>
+      <h2>Target <span class="hl">Subreddits</span></h2>
+      <p class="sub">Eleven communities where Agen.co's ICP is genuinely present, tiered by concentration of buyer intent — treat this as a starting list to validate with a full Reddit audit, not a final answer.</p>
+      <div class="card">
+        <table class="tbl">
+          <thead><tr><th style="width:16%">Subreddit</th><th style="width:10%">Tier</th><th style="width:30%">Audience</th><th>Engagement Approach</th></tr></thead>
+          <tbody>
+            <tr><td class="lab">r/cybersecurity</td><td><span class="tierbadge t1">Tier 1</span></td><td>Enterprise security practitioners &amp; CISOs evaluating tools</td><td>Zero tolerance for promo — answer real architecture/incident questions first, disclose only when directly relevant.</td></tr>
+            <tr><td class="lab">r/AI_Agents</td><td><span class="tierbadge t1">Tier 1</span></td><td>Builders &amp; tinkerers shipping agents, heavy MCP chatter</td><td>Casual, tool-recommendation friendly if disclosed — share real build notes, not launch posts.</td></tr>
+            <tr><td class="lab">r/mcp</td><td><span class="tierbadge t1">Tier 1</span></td><td>MCP protocol implementers &amp; early adopters</td><td>Technical, spec-literate crowd — deep implementation answers earn trust fast.</td></tr>
+            <tr><td class="lab">r/devops</td><td><span class="tierbadge t1">Tier 1</span></td><td>Platform/SRE engineers automating infra &amp; access</td><td>Skeptical of vendor pitches — lead with runbooks and ops war stories.</td></tr>
+            <tr><td class="lab">r/netsec</td><td><span class="tierbadge t2">Tier 2</span></td><td>Security researchers &amp; red teamers, research-only norms</td><td>Original technical writeups only — no product framing at all.</td></tr>
+            <tr><td class="lab">r/LLMDevs</td><td><span class="tierbadge t2">Tier 2</span></td><td>Developers building production LLM/agent apps</td><td>Helpful, code-first — share patterns, link to docs sparingly.</td></tr>
+            <tr><td class="lab">r/SaaS</td><td><span class="tierbadge t2">Tier 2</span></td><td>SaaS founders &amp; product leaders (Agen for SaaS ICP)</td><td>Founder-to-founder tone — talk tradeoffs and GTM, not feature lists.</td></tr>
+            <tr><td class="lab">r/ExperiencedDevs</td><td><span class="tierbadge t2">Tier 2</span></td><td>Senior engineers debating architecture &amp; build-vs-buy</td><td>High bar for substance — only engage on genuine architecture threads.</td></tr>
+            <tr><td class="lab">r/sysadmin</td><td><span class="tierbadge t3">Tier 3</span></td><td>IT &amp; identity admins provisioning access</td><td>Practical, ticket-style tone — answer the literal how-to.</td></tr>
+            <tr><td class="lab">r/GRC</td><td><span class="tierbadge t3">Tier 3</span></td><td>Governance, risk &amp; compliance professionals</td><td>Compliance-fluent — cite frameworks (SOC 2, HIPAA), never marketing language.</td></tr>
+            <tr><td class="lab">r/OpenAI</td><td><span class="tierbadge t3">Tier 3</span></td><td>General ChatGPT/connector users, less technical</td><td>Light touch — only jump in on threads about connecting tools/data to ChatGPT.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="navsec" id="methodologies">
+      <div class="eyebrow"><span>04</span> Foundation</div>
+      <h2>Methodo<span class="hl">logies</span></h2>
+      <p class="sub">Three operating principles that govern every account and every sprint below.</p>
+      <div class="grid methgrid">
+        <div class="card methcard"><span class="no">01</span><h3>Build accounts like a LinkedIn profile</h3><p>Invest real time, keep a routine, give every account a clear identity that respects Reddit's culture — no drive-by posting.</p></div>
+        <div class="card methcard"><span class="no">02</span><h3>Don't try to win all of Reddit at once</h3><p>Focus on the 5-6 Tier 1 subreddits first (r/cybersecurity, r/AI_Agents, r/mcp, r/devops) and expand only once there's real grip.</p></div>
+        <div class="card methcard"><span class="no">03</span><h3>Market the product, don't over-promote it</h3><p>Brand-safe execution beats promotion every time — Reddit has a long memory, and security audiences remember vendor spam.</p></div>
+      </div>
+    </section>
+
+    <section class="navsec" id="accounts">
+      <div class="eyebrow"><span>05</span> Foundation</div>
+      <h2>Account <span class="hl">Setup</span></h2>
+      <p class="sub">Four account types, each with a distinct role in Agen.co's Reddit presence.</p>
+      <div class="grid acctgrid">
+        <div class="card acctcard"><div class="head"><div class="ic ic-a">◆</div><h3>Founder / Spokesperson Account(s)</h3></div><p>Leads with insight on agent identity and MCP risk, not promotion — identifies as an Agen.co/Frontegg founder or exec, runs occasional AMAs on "God-mode agents" and least privilege.</p><div class="pillrow"><span class="subpill">r/cybersecurity</span><span class="subpill">r/mcp</span><span class="subpill">r/AI_Agents</span></div></div>
+        <div class="card acctcard"><div class="head"><div class="ic ic-b">■</div><h3>Branded Account(s)</h3></div><p>The official Agen.co account — engages with brand mentions, shares product updates, always discloses, and points to the relevant doc or offer when genuinely asked.</p><div class="pillrow"><span class="subpill">r/SaaS</span><span class="subpill">r/OpenAI</span><span class="subpill">r/AI_Agents</span></div></div>
+        <div class="card acctcard"><div class="head"><div class="ic ic-c">●</div><h3>Team / Expert Account(s)</h3></div><p>Disclosed Agen.co engineers giving practitioner-depth answers on MCP implementation and agent IAM — note affiliation, help first, sell never.</p><div class="pillrow"><span class="subpill">r/mcp</span><span class="subpill">r/devops</span><span class="subpill">r/netsec</span></div></div>
+        <div class="card acctcard"><div class="head"><div class="ic ic-d">▲</div><h3>Brand Advocate Account(s)</h3></div><p>Individual personas with real posting history who've genuinely used Agen.co — share use cases and recommend it naturally when it fits the thread.</p><div class="pillrow"><span class="subpill">r/sysadmin</span><span class="subpill">r/GRC</span><span class="subpill">r/ExperiencedDevs</span></div></div>
+      </div>
+      <div class="callout" style="margin-top:14px"><b>Scale note:</b> Agen.co can run more than one account per category to scale engagement, each tied to real history and karma so participation stays authentic — more accounts also means a safety net if any single account gets flagged at the edges.</div>
+    </section>
+
+    <!-- ===================== PART 2: EXECUTION SPRINTS ===================== -->
+    <div id="part-execution"></div>
+    <div class="part-divider"><div class="num">②</div><div class="txt"><b>Execution Sprints</b><span>Eight sprints, one continuous roadmap</span></div><div class="rule"></div></div>
+
+    <div class="precface">Where hard Reddit data isn't available yet, this roadmap uses strategic inference from Agen.co's site, product, and category. A full Reddit data audit (mention volumes, existing sentiment, exact thread rankings) would sharpen every number below into an exact target.</div>
+
+    <div class="roadmap">
+
+      <div class="rmap-item" id="sprint-1">
+        <div class="node-col"><div class="node">1</div><div class="line"></div></div>
+        <div class="card rmap-card">
+          <div class="objbox"><b>Objective:</b> Get every account from Section 5 into genuine, unremarkable good standing before any brand engagement begins.</div>
+          <h3>Account Setup &amp; Warmup</h3>
+          <p>Assign the Founder, Branded, Team, and Advocate accounts defined earlier, then warm each one up with real activity in target subreddits — commenting, upvoting, and posting on non-brand topics — before Agen.co is ever mentioned.</p>
+          <p style="margin-top:8px">Many of the Tier 1 subreddits (r/cybersecurity, r/netsec especially) enforce minimum karma and account-age thresholds, and accounts with no history read as suspicious in a security-focused community regardless of what they say.</p>
+        </div>
+      </div>
+
+      <div class="rmap-item" id="sprint-2">
+        <div class="node-col"><div class="node">2</div><div class="line"></div></div>
+        <div class="card rmap-card">
+          <div class="objbox"><b>Objective:</b> Build the intelligence base every later sprint draws from.</div>
+          <h3>Research &amp; Analysis</h3>
+          <table class="tbl">
+            <thead><tr><th style="width:20%">Research Area</th><th>What to Analyze</th></tr></thead>
+            <tbody>
+              <tr><td class="lab">ICP Analysis</td><td>Pain points around agent identity, MCP risk, and permission sprawl; which existing solutions security teams already like or distrust.</td></tr>
+              <tr><td class="lab">Competitor Analysis</td><td>How Noma Security, WitnessAI, Operant AI, RunLayer, IBM watsonx, and Microsoft's Entra Agent ID actually engage on Reddit — genuine practitioner voice vs. bot-like automation.</td></tr>
+              <tr><td class="lab">Gap Analysis</td><td>Angles where Agen.co can build credible presence fastest — e.g. tenant-level delegated policy, deploy-anywhere (VPC/on-prem), or the "God-mode agent" framing no competitor owns yet.</td></tr>
+              <tr><td class="lab">Subreddit Analysis</td><td>Easiest openings per community — r/mcp rewards implementation depth, r/cybersecurity rewards incident-response framing, r/SaaS rewards build-vs-buy honesty.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="rmap-item" id="sprint-3">
+        <div class="node-col"><div class="node">3</div><div class="line"></div></div>
+        <div class="card rmap-card">
+          <div class="objbox"><b>Objective:</b> Know the moment Agen.co, a competitor, or a relevant problem is mentioned anywhere on Reddit.</div>
+          <h3>Monitoring &amp; Response System</h3>
+          <table class="tbl">
+            <thead><tr><th style="width:22%">Category</th><th style="width:38%">Keywords to Track</th><th>Response Strategy</th></tr></thead>
+            <tbody>
+              <tr><td class="lab">Branded Keywords</td><td>Agen.co, AgentLink, Agent IAM, Agent Connector, Frontegg AI, agen.co</td><td>Thank/clarify quickly, correct misinformation, never argue publicly.</td></tr>
+              <tr><td class="lab">Competitor Keywords</td><td>Noma Security, WitnessAI, Operant AI, RunLayer, IBM watsonx, Entra Agent ID</td><td>Only engage where genuinely helpful comparison adds value; never disparage by name.</td></tr>
+              <tr><td class="lab">Problem Keywords</td><td>"MCP server security", "agent over-permissioned", "rogue AI agent", "AI agent data exfiltration"</td><td>Lead with the underlying fix; mention Agen.co only if it's the natural next line.</td></tr>
+              <tr><td class="lab">Feature &amp; Solution Keywords</td><td>"MCP gateway", "agent access control", "least privilege AI agent", "agent observability tool"</td><td>Educational answer first, product reference second — save the pitch for DMs if asked.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="rmap-item" id="sprint-4">
+        <div class="node-col"><div class="node">4</div><div class="line"></div></div>
+        <div class="card rmap-card">
+          <div class="objbox"><b>Objective:</b> Earn real standing in a small set of communities before expanding.</div>
+          <h3>Community-Based Authority (CAB)</h3>
+          <p>Pick 5-6 Tier 1 subreddits from Section 3 and concentrate there for the first couple of months rather than spreading thin.</p>
+          <table class="tbl" style="margin-top:10px">
+            <thead><tr><th style="width:20%">Subreddit</th><th>What Earns Trust Here</th></tr></thead>
+            <tbody>
+              <tr><td class="lab">r/cybersecurity</td><td>Genuinely useful incident/architecture answers with zero promotional framing — this community punishes anything that smells like marketing.</td></tr>
+              <tr><td class="lab">r/mcp</td><td>Deep, correct implementation detail — this is a spec-literate crowd that rewards precision over polish.</td></tr>
+              <tr><td class="lab">r/AI_Agents</td><td>Disclosed tool recommendations tied to a real build story, not a launch announcement.</td></tr>
+              <tr><td class="lab">r/devops</td><td>Ops-first framing — runbooks, failure modes, rollback plans, not feature lists.</td></tr>
+              <tr><td class="lab">r/netsec</td><td>Original research or writeups only — any product framing here reads as spam.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="rmap-item" id="sprint-5">
+        <div class="node-col"><div class="node">5</div><div class="line"></div></div>
+        <div class="card rmap-card">
+          <div class="objbox"><b>Objective:</b> Own a consistent set of themes, not just a product name.</div>
+          <h3>Topic Advocacy</h3>
+          <p>Pick content pillars tied to Agen.co's core features and engage with them consistently — this doesn't mean dropping the brand name every time; suggest Agen.co only when it genuinely fits the thread.</p>
+          <table class="tbl" style="margin-top:10px">
+            <thead><tr><th style="width:26%">Content Pillar</th><th style="width:34%">Why It Matters to This Audience</th><th>Keywords &amp; Phrases to Monitor</th></tr></thead>
+            <tbody>
+              <tr><td class="lab">Agent identity &amp; least privilege</td><td>Directly addresses the "God-mode agent" fear security teams raise constantly.</td><td>"agent identity", "least privilege AI agent", "over-permissioned agent"</td></tr>
+              <tr><td class="lab">MCP production-readiness</td><td>Most MCP implementations are still prototypes — this is the credibility gap Agen.co can close.</td><td>"MCP server security", "MCP gateway", "production MCP"</td></tr>
+              <tr><td class="lab">Delegated / tenant-level AI governance</td><td>Speaks directly to SaaS leaders juggling different customers' risk tolerances.</td><td>"multi-tenant AI policy", "tenant-level governance"</td></tr>
+              <tr><td class="lab">Compliance-aware data protection</td><td>PCI/PII/HIPAA masking is the exact language CISOs and GRC pros search for.</td><td>"AI agent PII masking", "HIPAA AI agent", "SOC 2 agent access"</td></tr>
+              <tr><td class="lab">Agent observability &amp; audit trails</td><td>Answers "how do I even know what my agents did" — a universal fear once agents go to production.</td><td>"agent audit trail", "AI agent observability", "agent analytics"</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="rmap-item" id="sprint-6">
+        <div class="node-col"><div class="node">6</div><div class="line"></div></div>
+        <div class="card rmap-card">
+          <div class="objbox"><b>Objective:</b> Establish a long-term, owned home base beyond individual threads.</div>
+          <h3>Launch a Subreddit</h3>
+          <p>Agen.co isn't yet frequently name-searched on Reddit the way an established brand would be, so the right move is a subreddit built around the <b>problem</b> it solves — r/AIAgentGovernance or r/AgenticAccessControl — rather than r/AgenCo. This lets the right audience gather organically while Agen.co moderates and shapes the conversation.</p>
+          <div class="grid minicards">
+            <div class="card minicard"><h5>Content Pillars</h5><ul><li>Implementation tutorials (MCP gateways, agent IAM)</li><li>Tips &amp; patterns for least-privilege agents</li><li>Support &amp; troubleshooting threads</li><li>Product &amp; standards updates (MCP, A2A)</li><li>Open community Q&amp;A</li></ul></div>
+            <div class="card minicard"><h5>Growth Tactics</h5><ul><li>Cross-post relevant threads from r/mcp, r/AI_Agents</li><li>Pinned "start here" and glossary posts</li><li>Regular AMAs with Agen.co engineers</li><li>Highlight community-submitted case studies</li></ul></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rmap-item" id="sprint-7">
+        <div class="node-col"><div class="node">7</div><div class="line"></div></div>
+        <div class="card rmap-card">
+          <div class="objbox"><b>Objective:</b> Match real features to real pain points, and lead with the one that matters most.</div>
+          <h3>Champion Solution Chain</h3>
+          <table class="tbl">
+            <thead><tr><th style="width:17%">Feature</th><th style="width:24%">Problem It Solves</th><th style="width:20%">Where to Post</th><th>Narrative</th></tr></thead>
+            <tbody>
+              <tr><td class="lab">Agent IAM</td><td>Agents inheriting a human's full token — "God-mode" access with no scoping.</td><td>r/cybersecurity, r/netsec</td><td>Agents should have their own scoped identity, not yours.</td></tr>
+              <tr><td class="lab">Agent Connector</td><td>Most MCP implementations are too immature to expose safely in production.</td><td>r/mcp, r/SaaS</td><td>A hosted MCP server you can trust with real customer data.</td></tr>
+              <tr><td class="lab">Tenant-Level Policies</td><td>One centralized policy can't fit a startup and a regulated enterprise customer at once.</td><td>r/SaaS, r/ExperiencedDevs</td><td>Let each customer set their own AI guardrails, within your limits.</td></tr>
+              <tr><td class="lab">Compliance-aware masking</td><td>Agents moving PCI/PII/PHI data across boundaries with no redaction.</td><td>r/GRC, r/cybersecurity</td><td>Sensitive data stays masked even when an agent touches it.</td></tr>
+              <tr><td class="lab">Agent Analytics</td><td>Agent actions are invisible and unaudited once they're in production.</td><td>r/devops, r/sysadmin</td><td>See exactly what every agent did, and prove it.</td></tr>
+              <tr><td class="lab">Deploy anywhere (VPC/on-prem/device)</td><td>Latency, residency, and regulatory rules blocking AI adoption entirely.</td><td>r/devops, r/GRC</td><td>Run agent governance where your data already has to live.</td></tr>
+            </tbody>
+          </table>
+          <div class="champion"><span class="star">★</span><div><b>Champion solution: Agent IAM.</b><span>Excessive permissions and "God-mode" agents are the single most-discussed fear in these communities — Gartner's own estimate that 25% of enterprise breaches will trace back to AI agent abuse makes this the sharpest pain point to lead with. Expand to the rest of the table gradually once Agent IAM has real traction.</span></div></div>
+        </div>
+      </div>
+
+      <div class="rmap-item" id="sprint-8">
+        <div class="node-col"><div class="node">8</div></div>
+        <div class="card rmap-card">
+          <div class="objbox"><b>Objective:</b> Reduce risk and earn standing through the people who actually run these communities.</div>
+          <h3>Moderator &amp; Subreddit Partnership</h3>
+          <p>Build real relationships with the moderators of r/cybersecurity, r/mcp, r/AI_Agents, and r/devops — standing with mods is what earns Agen.co the right to contribute and, eventually, promote authentically.</p>
+          <p style="margin-top:8px">Some subreddits formally allow brands to act as recognized advocates or affiliates (flair, verified-vendor programs) — use those where they exist. Speaking with mods directly before any campaign lowers ban and removal risk substantially versus finding out the hard way.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ===================== PART 3: AI & SEARCH SPRINTS ===================== -->
+    <div id="part-ai"></div>
+    <div class="part-divider ai"><div class="num">③</div><div class="txt"><b>AI &amp; Search Sprints</b><span>Four sprints, same roadmap, new surface area</span></div><div class="rule"></div></div>
+
+    <div class="roadmap ai">
+
+      <div class="rmap-item" id="ai-1">
+        <div class="node-col"><div class="node">9</div><div class="line"></div></div>
+        <div class="card rmap-card">
+          <div class="objbox"><b>Objective:</b> Win the easiest, lowest-competition keyword territory first.</div>
+          <h3>Keyword Targeting</h3>
+          <p>For each low-competition keyword: check if a Reddit thread already ranks on Google's first page. If yes, leave a genuinely comprehensive comment strong enough to surface in the meta description. If the thread is archived or none exists, create a genuinely helpful new post in the right subreddit and work Agen.co in naturally.</p>
+          <table class="tbl" style="margin-top:10px">
+            <thead><tr><th style="width:26%">Keyword</th><th style="width:20%">Approach</th><th style="width:18%">Target Subreddit</th><th>Post or Comment Concept</th></tr></thead>
+            <tbody>
+              <tr><td class="lab">how to secure an MCP server</td><td>Comment on existing thread</td><td>r/mcp</td><td>Step-by-step scoping + guardrail checklist, Agen.co referenced as one option among the checklist.</td></tr>
+              <tr><td class="lab">stop AI agents from over-permissioning</td><td>New post</td><td>r/cybersecurity</td><td>"What we learned enforcing least privilege on agent identity" practitioner writeup.</td></tr>
+              <tr><td class="lab">let ChatGPT connect to my SaaS securely</td><td>New post</td><td>r/SaaS</td><td>Build-vs-buy breakdown for exposing a product via MCP safely.</td></tr>
+              <tr><td class="lab">AI agent audit trail best practices</td><td>Comment on existing thread</td><td>r/devops</td><td>Concrete example of what a useful agent audit log actually contains.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="rmap-item" id="ai-2">
+        <div class="node-col"><div class="node">10</div><div class="line"></div></div>
+        <div class="card rmap-card">
+          <div class="objbox"><b>Objective:</b> Own the Reddit source Google's AI Overview is already citing.</div>
+          <h3>Ranking on Google AI Overviews</h3>
+          <p>Google's AI Overviews give strong preference to Reddit threads — focus on keywords where an Overview already pulls from Reddit, identify whether the post body or a comment is the cited source, then out-write it. If a post is cited, create a stronger, more comprehensive version. If a comment is cited, write a better comment to earn the citation instead.</p>
+          <table class="tbl" style="margin-top:10px">
+            <thead><tr><th style="width:26%">Target Keyword</th><th style="width:18%">Cited Source</th><th style="width:22%">Action</th><th>Target Subreddit</th></tr></thead>
+            <tbody>
+              <tr><td class="lab">AI agent governance framework</td><td>Post</td><td>Publish a more comprehensive framework post</td><td>r/cybersecurity</td></tr>
+              <tr><td class="lab">MCP gateway comparison</td><td>Comment</td><td>Write a sharper, more current comparison comment</td><td>r/mcp</td></tr>
+              <tr><td class="lab">least privilege AI agent</td><td>Post</td><td>Publish an implementation-depth replacement post</td><td>r/devops</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="rmap-item" id="ai-3">
+        <div class="node-col"><div class="node">11</div><div class="line"></div></div>
+        <div class="card rmap-card">
+          <div class="objbox"><b>Objective:</b> Win the search engine Reddit itself is becoming.</div>
+          <h3>Ranking on Reddit Answers (Reddit's AI Search)</h3>
+          <p>Reddit is positioning itself as a search engine in its own right — as of late 2025, more than 80 million people use Reddit search weekly, up from 60 million a year earlier, and Reddit Answers grew from roughly 1 million to 15 million weekly queries over the same year. Ranking here gives major on-platform exposure and is faster to influence than Google's AI Overviews.</p>
+          <p style="margin-top:6px">Same method: find queries where Reddit Answers pulls from Reddit content, identify post vs. comment as the cited source, then create a stronger version.</p>
+          <table class="tbl" style="margin-top:10px">
+            <thead><tr><th style="width:26%">Target Query</th><th style="width:18%">Cited Source</th><th style="width:22%">Action</th><th>Target Subreddit</th></tr></thead>
+            <tbody>
+              <tr><td class="lab">best way to govern AI agents in production</td><td>Post</td><td>Publish a more current, comprehensive post</td><td>r/cybersecurity</td></tr>
+              <tr><td class="lab">how do I stop rogue AI agents</td><td>Comment</td><td>Write a better, more specific comment</td><td>r/AI_Agents</td></tr>
+              <tr><td class="lab">MCP server access control</td><td>Post</td><td>Publish a deeper implementation post</td><td>r/mcp</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="rmap-item" id="ai-4">
+        <div class="node-col"><div class="node">12</div></div>
+        <div class="card rmap-card">
+          <div class="objbox"><b>Objective:</b> Win the highest-value visibility target — getting cited inside the AI answers themselves.</div>
+          <h3>Ranking on LLMs &amp; AI Citations</h3>
+          <p>Use Reddgrow, our tracking tool, to see which prompts return Reddit-influenced answers and which threads are cited. Load target prompts into Reddgrow, identify whether a post or comment is the influencing source, then reverse-engineer that source to create the opportunity for Agen.co's answer to be cited instead, with a natural brand mention.</p>
+          <table class="tbl" style="margin-top:10px">
+            <thead><tr><th style="width:26%">Target Prompt / Query</th><th style="width:18%">Cited Reddit Source</th><th style="width:22%">Action</th><th>Target Subreddit</th></tr></thead>
+            <tbody>
+              <tr><td class="lab">"how do I secure MCP servers in production"</td><td>Post</td><td>Create a more comprehensive replacement post</td><td>r/mcp</td></tr>
+              <tr><td class="lab">"what's the best AI agent governance platform"</td><td>Comment</td><td>Write a sharper comparison comment</td><td>r/cybersecurity</td></tr>
+              <tr><td class="lab">"how to give AI agents least privilege access"</td><td>Post</td><td>Publish an implementation-depth post</td><td>r/devops</td></tr>
+            </tbody>
+          </table>
+          <div class="callout" style="margin-top:14px;background:var(--ai-tint);border-color:#BFE6EA;color:var(--ai-ink)"><b>Ongoing, not one-time:</b> LLM citations shift as models update — audit this monthly via Reddgrow rather than treating it as a single project.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <footer>
+      <div class="methodology"><b>Methodology.</b> This roadmap is built from a direct analysis of agen.co and Frontegg's related product pages (AgentLink, Agent IAM, Agent Connector, Frontegg.ai) as of July 2026 — no Reddit data audit was available at time of writing. Subreddit selection, tiering, competitor references, and content pillars are strategic inference from Agen.co's stated ICP, feature set, and publicly known category competitors (Noma Security, WitnessAI, Operant AI, RunLayer, IBM watsonx, Microsoft Entra Agent ID). Treat every subreddit, keyword, and sprint priority here as a starting hypothesis to validate against a full Reddit mention/sentiment audit before committing significant execution budget.</div>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  var navlinks = Array.prototype.slice.call(document.querySelectorAll('.navgroup a'));
+  var tablinks = Array.prototype.slice.call(document.querySelectorAll('#tabrow a'));
+  var secs = Array.prototype.slice.call(document.querySelectorAll('section.navsec'));
+
+  var partMarkers = [
+    {id:'part-foundation', part:'foundation'},
+    {id:'part-execution', part:'execution'},
+    {id:'part-ai', part:'ai'}
+  ];
+
+  function currentPartFor(sectionId){
+    var order = ['goals','why','icp','subreddits','methodologies','accounts',
+      'sprint-1','sprint-2','sprint-3','sprint-4','sprint-5','sprint-6','sprint-7','sprint-8',
+      'ai-1','ai-2','ai-3','ai-4'];
+    var idx = order.indexOf(sectionId);
+    if(idx === -1) return 'foundation';
+    if(idx <= 5) return 'foundation';
+    if(idx <= 13) return 'execution';
+    return 'ai';
+  }
+
+  var sectionObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var id = e.target.id;
+        navlinks.forEach(function(a){
+          a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+        });
+        var part = currentPartFor(id);
+        tablinks.forEach(function(a){
+          var isActive = a.getAttribute('data-part') === part;
+          a.classList.toggle('active', isActive);
+          a.classList.toggle('ai-active', isActive && part === 'ai');
+        });
+      }
+    });
+  }, {rootMargin:'-40% 0px -50% 0px'});
+
+  secs.forEach(function(s){ sectionObserver.observe(s); });
+
+  // roadmap items also update sidebar/tab state as they scroll (they aren't .navsec)
+  var itemObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var id = e.target.id;
+        navlinks.forEach(function(a){
+          a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+        });
+        var part = currentPartFor(id);
+        tablinks.forEach(function(a){
+          var isActive = a.getAttribute('data-part') === part;
+          a.classList.toggle('active', isActive);
+          a.classList.toggle('ai-active', isActive && part === 'ai');
+        });
+      }
+    });
+  }, {rootMargin:'-40% 0px -50% 0px'});
+  document.querySelectorAll('.rmap-item[id]').forEach(function(s){ itemObserver.observe(s); });
+})();
+</script>
+</body>
+</html>
