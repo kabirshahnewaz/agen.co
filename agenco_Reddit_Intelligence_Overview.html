@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>agen.co · Reddit Intelligence Overview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F1F3F7;
+  --card: #FFFFFF;
+  --line: #E4E8EF;
+  --line2: #D8DEE9;
+  --ink: #12172A;
+  --muted: #5C6478;
+  --faint: #98A2B3;
+  --accent: #3454D1;
+  --accent-soft: #E4EAFC;
+  --accent-tint: #F4F6FE;
+  --accent-ink: #22337A;
+  --pos: #1E9D6B;
+  --pos-soft: #E1F5EC;
+  --neu: #D9DEE8;
+  --neg: #D6455B;
+  --neg-soft: #FBE6EA;
+  --blue: #2A66F6;
+  --gold: #C9822E;
+  --shadow: 0 1px 2px rgba(18,23,42,.04), 0 6px 22px rgba(18,23,42,.05);
+  --radius: 14px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+.mono { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+a { color: inherit; text-decoration: none; }
+
+/* Header */
+header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(241,243,247,.9);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.bar {
+  max-width: 1160px; margin: 0 auto;
+  padding: 14px 24px;
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+}
+.brand { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 17px; letter-spacing: -.02em; }
+.brand .mark{width:24px;height:24px;border-radius:7px;background:linear-gradient(155deg,var(--accent),#1D2E8F);display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:800}
+.badge {
+  font-size: 10.5px; font-weight: 700; letter-spacing: .07em;
+  text-transform: uppercase; color: var(--accent-ink);
+  background: var(--accent-soft); border: 1px solid #D3DBFA;
+  padding: 3px 9px; border-radius: 999px;
+}
+.meta { margin-left: auto; font-size: 12.5px; color: var(--muted); }
+.meta b { color: var(--ink); }
+
+/* ---------- global page nav ---------- */
+.gnav{border-bottom:1px solid var(--line);background:var(--card)}
+.gnav-inner{max-width:1160px;margin:0 auto;padding:8px 24px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.gnav .glabel{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-right:4px}
+.gnav a{font-size:12px;font-weight:600;color:var(--muted);padding:6px 11px;border-radius:8px;transition:.15s;white-space:nowrap}
+.gnav a:hover{color:var(--ink);background:var(--accent-tint)}
+.gnav a.active{color:var(--accent);background:var(--accent-tint)}
+.gnav a.soon{color:var(--faint);opacity:.6}
+
+main { max-width: 1160px; margin: 0 auto; padding: 0 24px 96px; }
+
+/* Hero */
+.hero { padding: 48px 0 36px; }
+.eyebrow {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 700; letter-spacing: .09em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
+}
+.hero h1 { font-size: clamp(28px, 4vw, 44px); font-weight: 800; letter-spacing: -.04em; line-height: 1.1; margin-bottom: 12px; }
+.hero p { font-size: 16px; color: var(--muted); max-width: 620px; line-height: 1.6; }
+
+/* Corpus stats strip */
+.corpus-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 32px 0; }
+.cstat { background: var(--card); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); padding: 18px 16px; }
+.cstat .k { font-size: 10.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.cstat .v { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 28px; letter-spacing: -.04em; line-height: 1; }
+.cstat .d { font-size: 11.5px; color: var(--faint); margin-top: 6px; }
+.cstat.accent { background: linear-gradient(140deg, #fff, var(--accent-tint)); border-color: #D3DBFA; }
+.cstat.accent .v { color: var(--accent); }
+
+/* Section label */
+.sec-label { font-size: 11px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--faint); padding: 32px 0 12px; border-top: 1px solid var(--line2); }
+
+/* Report grid */
+.reports { display: grid; gap: 16px; }
+.rcard { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; display: grid; grid-template-columns: 280px 1fr; }
+.rcard-left { border-right: 1px solid var(--line); padding: 24px; display: flex; flex-direction: column; gap: 14px; position: relative; }
+.rcard-left .num { font-family: 'JetBrains Mono'; font-size: 11px; font-weight: 700; color: var(--faint); letter-spacing: .06em; }
+.rcard-left h2 { font-size: 17px; font-weight: 800; letter-spacing: -.02em; line-height: 1.25; }
+.rcard-left .desc { font-size: 13px; color: var(--muted); line-height: 1.55; flex: 1; }
+.rcard-left .tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.tag { font-size: 10.5px; font-weight: 700; letter-spacing: .05em; padding: 3px 8px; border-radius: 6px; border: 1px solid; }
+.tag-accent { color: var(--accent); background: var(--accent-tint); border-color: #D3DBFA; }
+.tag-blue { color: var(--blue); background: #EBF1FF; border-color: #C2D2FC; }
+.tag-pos { color: var(--pos); background: var(--pos-soft); border-color: #B8DCC9; }
+.tag-gold { color: var(--gold); background: #FBEEDD; border-color: #EFD3AC; }
+.rcard-left .openlink{margin-top:2px;font-size:12px;font-weight:700;color:var(--accent)}
+.rcard-left .openlink:hover{text-decoration:underline}
+
+.rcard-right { padding: 22px 24px; }
+.panel-label { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+
+/* insight blocks */
+.insight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.insight-block { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+.insight-block .ib-label { font-size: 10.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.insight-block .ib-value { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 22px; letter-spacing: -.03em; color: var(--ink); }
+.insight-block.accent { background: var(--accent-tint); border-color: #D3DBFA; }
+.insight-block.accent .ib-value { color: var(--accent); }
+.insight-block .ib-note { font-size: 12px; color: var(--muted); margin-top: 6px; line-height: 1.4; }
+
+/* tool bars */
+.tool-list { display: flex; flex-direction: column; gap: 7px; }
+.tool-row { display: flex; align-items: center; gap: 10px; }
+.tool-row .tn { font-size: 12px; font-weight: 600; width: 108px; flex-shrink: 0; }
+.tool-track { flex: 1; height: 18px; background: var(--bg); border-radius: 5px; overflow: hidden; border: 1px solid var(--line); }
+.tool-fill { height: 100%; border-radius: 5px; display: flex; align-items: center; justify-content: flex-end; padding-right: 6px; }
+.tool-fill span { font-size: 10px; font-weight: 700; color: rgba(255,255,255,.92); font-family: 'JetBrains Mono'; }
+.tool-row .tc { font-family: 'JetBrains Mono'; font-size: 12px; font-weight: 700; color: var(--muted); width: 30px; text-align: right; }
+
+/* pain bars */
+.pain-list { display: flex; flex-direction: column; gap: 7px; margin-top: 4px; }
+.pain-row { display: grid; grid-template-columns: 168px 1fr 40px; align-items: center; gap: 8px; }
+.pain-row .pl { font-size: 12px; font-weight: 600; }
+.pain-track { height: 14px; background: var(--neg-soft); border-radius: 4px; overflow: hidden; }
+.pain-fill { height: 100%; background: var(--neg); border-radius: 4px; }
+.pain-row .pc { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 11.5px; color: var(--muted); text-align: right; }
+
+/* quote block */
+.quote-block { background: var(--accent-tint); border-left: 3px solid var(--accent); border-radius: 0 9px 9px 0; padding: 12px 14px; font-size: 12.5px; line-height: 1.55; color: var(--ink); font-style: italic; }
+.quote-block .qsrc { font-style: normal; font-size: 10.5px; font-weight: 700; color: var(--muted); margin-top: 6px; letter-spacing: .04em; text-transform: uppercase; }
+
+/* zero callout */
+.zero-callout { background: linear-gradient(135deg, #fff, var(--accent-tint)); border: 1px solid #D3DBFA; border-radius: 11px; padding: 18px 20px; display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+.zero-n { font-family: 'JetBrains Mono'; font-weight: 700; font-size: 52px; letter-spacing: -.05em; line-height: 1; color: var(--accent); flex-shrink: 0; }
+.zero-text h4 { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
+.zero-text p { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+
+/* tier list */
+.tier-list { display: flex; flex-direction: column; gap: 8px; }
+.tier-row { display: flex; align-items: flex-start; gap: 10px; background: var(--bg); border: 1px solid var(--line); border-radius: 9px; padding: 10px 12px; }
+.tier-badge { font-size: 9.5px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; padding: 3px 7px; border-radius: 5px; white-space: nowrap; flex-shrink: 0; margin-top: 1px; }
+.t1 { background: var(--accent-soft); color: var(--accent-ink); }
+.t1c { background: #EEF1F6; color: var(--muted); }
+.t2 { background: #E1F5EC; color: #0F5A3D; }
+.t3 { background: #FBEEDD; color: #7A501C; }
+.tier-name { font-size: 13px; font-weight: 700; font-family: 'JetBrains Mono'; }
+.tier-note { font-size: 11.5px; color: var(--muted); line-height: 1.4; }
+
+/* roadmap items */
+.roadmap-list { display: flex; flex-direction: column; gap: 10px; }
+.rm-row { display: flex; gap: 12px; align-items: flex-start; background: var(--bg); border: 1px solid var(--line); border-radius: 9px; padding: 11px 14px; }
+.rm-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.rm-head { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+.rm-note { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+/* signal / persona rows */
+.signal-list { display: flex; flex-direction: column; gap: 7px; }
+.signal-row { display: flex; align-items: flex-start; gap: 9px; font-size: 12.5px; }
+.signal-row .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+
+/* footer */
+footer { max-width: 1160px; margin: 0 auto; padding: 28px 24px 60px; color: var(--faint); font-size: 12px; border-top: 1px solid var(--line); line-height: 1.7; }
+
+@media (max-width: 900px) {
+  .rcard { grid-template-columns: 1fr; }
+  .rcard-left { border-right: none; border-bottom: 1px solid var(--line); }
+  .corpus-strip { grid-template-columns: repeat(3, 1fr); }
+  .insight-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .corpus-strip { grid-template-columns: repeat(2, 1fr); }
+  main { padding: 0 14px 80px; }
+  .bar { padding: 12px 14px; }
+  .hero h1 { font-size: 24px; }
+  .pain-row{grid-template-columns:110px 1fr 34px}
+  .tool-row .tn{width:78px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="gnav">
+    <div class="gnav-inner">
+      <span class="glabel">agen.co</span>
+      <a href="agenco_Reddit_Intelligence_Overview.html" class="active">Overview</a>
+      <a href="Agen_Reddit_Marketing_Roadmap.html">Roadmap</a>
+      <a href="AI_Agent_Governance_Reddit_Competitive_Intelligence.html">Competitive Analysis</a>
+      <a href="AI_Agent_Security_Reddit_Market_Intelligence.html">Market Analysis</a>
+      <a href="agenco_Subreddit_Intelligence_Map.html">Subreddit Mapping</a>
+    </div>
+  </div>
+  <div class="bar">
+    <div class="brand"><span class="mark">AI</span>agen.co</div>
+    <span class="badge">Reddit Intelligence Suite</span>
+    <span class="meta">4 reports · <b>573 threads</b> · <b>3,451 comments</b> · <b>33 subreddits scored</b></span>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="eyebrow">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5.5" stroke="#3454D1"/><circle cx="6" cy="6" r="2" fill="#3454D1"/></svg>
+      Intelligence Overview
+    </div>
+    <h1>The complete picture of<br>agen.co's Reddit opportunity</h1>
+    <p>Four inter-linked analyses covering named-competitor share of voice, category-wide market demand, subreddit priority, and a go-to-market roadmap — all built from real practitioner conversation, not assumptions.</p>
+  </div>
+
+  <!-- CORPUS STATS -->
+  <div class="corpus-strip">
+    <div class="cstat accent">
+      <div class="k">Dedicated agent-governance subreddits</div>
+      <div class="v mono">0</div>
+      <div class="d">the roadmap's case for launching one</div>
+    </div>
+    <div class="cstat">
+      <div class="k">Competitor threads analyzed</div>
+      <div class="v mono">332</div>
+      <div class="d">across 6 named vendors</div>
+    </div>
+    <div class="cstat">
+      <div class="k">Market threads analyzed</div>
+      <div class="v mono">241</div>
+      <div class="d">14 category keywords, deduplicated</div>
+    </div>
+    <div class="cstat">
+      <div class="k">Subreddits scored</div>
+      <div class="v mono">33</div>
+      <div class="d">ranked into 4 opportunity tiers</div>
+    </div>
+    <div class="cstat">
+      <div class="k">Adjacent tools surfaced</div>
+      <div class="v mono">15</div>
+      <div class="d">emerging MCP/agent-security landscape</div>
+    </div>
+  </div>
+
+  <!-- SECTION LABEL -->
+  <div class="sec-label">Four reports — what each one covers</div>
+
+  <div class="reports">
+
+    <!-- ═══════════════════════════ -->
+    <!-- REPORT 1: Competitive Intelligence -->
+    <!-- ═══════════════════════════ -->
+    <div class="rcard">
+      <div class="rcard-left">
+        <div class="num">Report 01</div>
+        <h2>Competitive Intelligence</h2>
+        <div class="desc">
+          How Microsoft Agent Governance, Noma Security, Operant AI, RunLayer, IBM watsonx, and WitnessAI are discussed on Reddit — share of voice, sentiment, pain points, and a per-vendor deep dive, plus 15 adjacent tools circling the same space.
+        </div>
+        <div class="tags">
+          <span class="tag tag-accent">Share of Voice</span>
+          <span class="tag tag-blue">Sentiment</span>
+          <span class="tag tag-gold">Adjacent Tools</span>
+        </div>
+        <a class="openlink" href="AI_Agent_Governance_Reddit_Competitive_Intelligence.html">Open full report →</a>
+      </div>
+      <div class="rcard-right">
+        <div class="zero-callout">
+          <div class="zero-n">100%</div>
+          <div class="zero-text">
+            <h4>Operant AI's entire Reddit footprint is neutral</h4>
+            <p>All 130 scored mentions across 28 threads are syndicated partner-program press coverage — zero organic praise, zero organic criticism anywhere in the corpus.</p>
+          </div>
+        </div>
+        <div class="panel-label">Analyzed threads by vendor</div>
+        <div class="tool-list">
+          <div class="tool-row"><div class="tn">IBM watsonx</div><div class="tool-track"><div class="tool-fill" style="width:100%;background:#3454D1"><span>237</span></div></div><div class="tc">237</div></div>
+          <div class="tool-row"><div class="tn">Operant AI</div><div class="tool-track"><div class="tool-fill" style="width:12%;background:#7B93E8"><span>28</span></div></div><div class="tc">28</div></div>
+          <div class="tool-row"><div class="tn">Noma Security</div><div class="tool-track"><div class="tool-fill" style="width:10%;background:#D6455B"><span>23</span></div></div><div class="tc">23</div></div>
+          <div class="tool-row"><div class="tn">RunLayer</div><div class="tool-track"><div class="tool-fill" style="width:9%;background:#C9822E"><span>22</span></div></div><div class="tc">22</div></div>
+          <div class="tool-row"><div class="tn">WitnessAI</div><div class="tool-track"><div class="tool-fill" style="width:5%;background:#8B5CF6"><span>12</span></div></div><div class="tc">12</div></div>
+          <div class="tool-row"><div class="tn">MS Agent Gov.</div><div class="tool-track"><div class="tool-fill" style="width:4%;background:#2FA88A"><span>10</span></div></div><div class="tc">10</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════ -->
+    <!-- REPORT 2: Market Intelligence -->
+    <!-- ═══════════════════════════ -->
+    <div class="rcard">
+      <div class="rcard-left">
+        <div class="num">Report 02</div>
+        <h2>Market Intelligence</h2>
+        <div class="desc">
+          Keyword-driven, not brand-driven: what the whole AI agent security &amp; governance category complains about, demands, objects to, and lacks — ending in a ranked Market Gap Analysis and six verdicts for agen.co.
+        </div>
+        <div class="tags">
+          <span class="tag tag-accent">Complaints</span>
+          <span class="tag tag-blue">Feature Demand</span>
+          <span class="tag tag-pos">Market Gaps</span>
+        </div>
+        <a class="openlink" href="AI_Agent_Security_Reddit_Market_Intelligence.html">Open full report →</a>
+      </div>
+      <div class="rcard-right">
+        <div class="insight-grid" style="margin-bottom:14px">
+          <div class="insight-block accent">
+            <div class="ib-label">Top feature demand</div>
+            <div class="ib-value">20.3%</div>
+            <div class="ib-note">Observability across agents/tools — the single loudest unmet request</div>
+          </div>
+          <div class="insight-block">
+            <div class="ib-label">Biggest market gap</div>
+            <div class="ib-value">7 DIY builds</div>
+            <div class="ib-note">Agent action auditability — builders hand-rolling what doesn't exist yet</div>
+          </div>
+          <div class="insight-block">
+            <div class="ib-label">Dominant audience</div>
+            <div class="ib-value">85.5%</div>
+            <div class="ib-note">Builders &amp; practitioners, not enterprise buyers</div>
+          </div>
+          <div class="insight-block">
+            <div class="ib-label">Top complaint</div>
+            <div class="ib-value">18.7%</div>
+            <div class="ib-note">Prompt/tool injection &amp; jailbreak risk</div>
+          </div>
+        </div>
+        <div class="panel-label">Top complaint themes</div>
+        <div class="pain-list" style="margin-bottom:14px">
+          <div class="pain-row"><div class="pl">Injection &amp; jailbreak risk</div><div class="pain-track"><div class="pain-fill" style="width:100%"></div></div><div class="pc">18.7%</div></div>
+          <div class="pain-row"><div class="pl">EU AI Act compliance burden</div><div class="pain-track"><div class="pain-fill" style="width:31%"></div></div><div class="pc">5.8%</div></div>
+          <div class="pain-row"><div class="pl">Tool &amp; vendor sprawl</div><div class="pain-track"><div class="pain-fill" style="width:20%"></div></div><div class="pc">3.7%</div></div>
+          <div class="pain-row"><div class="pl">Vaporware / hype skepticism</div><div class="pain-track"><div class="pain-fill" style="width:16%"></div></div><div class="pc">2.9%</div></div>
+        </div>
+        <div class="quote-block">
+          Builders warn that self-hosted AI workflow tools like Flowise and Langflow are effectively unmanaged remote-code-execution surfaces, wired straight into live cloud credentials.
+          <div class="qsrc">r/cybersecurity — paraphrased</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════ -->
+    <!-- REPORT 3: Subreddit Intelligence Map -->
+    <!-- ═══════════════════════════ -->
+    <div class="rcard">
+      <div class="rcard-left">
+        <div class="num">Report 03</div>
+        <h2>Subreddit Intelligence Map</h2>
+        <div class="desc">
+          Every subreddit touched by the competitor and keyword data, scored into an Opportunity Score and sorted into Core / Active / Emerging / Niche tiers, with a recommended posting format for each community.
+        </div>
+        <div class="tags">
+          <span class="tag tag-accent">Opportunity Score</span>
+          <span class="tag tag-blue">Tiering</span>
+          <span class="tag tag-gold">Momentum</span>
+        </div>
+        <a class="openlink" href="agenco_Subreddit_Intelligence_Map.html">Open full report →</a>
+      </div>
+      <div class="rcard-right">
+        <div class="panel-label">Top-ranked communities</div>
+        <div class="tier-list" style="margin-bottom:14px">
+          <div class="tier-row">
+            <span class="tier-badge t1">Tier 1</span>
+            <div><div class="tier-name">r/mcp</div><div class="tier-note">33 threads · 97% topic relevance · opportunity score 17.99 — the single highest-value community to enter now</div></div>
+          </div>
+          <div class="tier-row">
+            <span class="tier-badge t1c">Competitor turf</span>
+            <div><div class="tier-name">r/IBM</div><div class="tier-note">65 threads, largest by volume — but IBM-owned; track as intelligence, not a channel to post in</div></div>
+          </div>
+          <div class="tier-row">
+            <span class="tier-badge t1">Tier 1</span>
+            <div><div class="tier-name">r/cybersecurity</div><div class="tier-note">100% topic relevance, high engagement despite modest volume</div></div>
+          </div>
+          <div class="tier-row">
+            <span class="tier-badge t3">Tier 3</span>
+            <div><div class="tier-name">r/sysadmin</div><div class="tier-note">Highest engagement in the whole map (39.8 avg comments) — but driven by one viral thread, unconfirmed as durable</div></div>
+          </div>
+        </div>
+        <div class="panel-label">Opportunity score, top communities</div>
+        <div class="tool-list">
+          <div class="tool-row"><div class="tn">r/mcp</div><div class="tool-track"><div class="tool-fill" style="width:100%;background:#3454D1"><span>17.99</span></div></div><div class="tc">T1</div></div>
+          <div class="tool-row"><div class="tn">r/AI_Agents</div><div class="tool-track"><div class="tool-fill" style="width:93%;background:#7B93E8"><span>16.79</span></div></div><div class="tc">T1</div></div>
+          <div class="tool-row"><div class="tn">r/cybersecurity</div><div class="tool-track"><div class="tool-fill" style="width:82%;background:#2FA88A"><span>14.68</span></div></div><div class="tc">T1</div></div>
+          <div class="tool-row"><div class="tn">r/LLMDevs</div><div class="tool-track"><div class="tool-fill" style="width:74%;background:#8B5CF6"><span>13.28</span></div></div><div class="tc">T1</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════ -->
+    <!-- REPORT 4: Reddit Marketing Roadmap -->
+    <!-- ═══════════════════════════ -->
+    <div class="rcard">
+      <div class="rcard-left">
+        <div class="num">Report 04</div>
+        <h2>Reddit Marketing Roadmap</h2>
+        <div class="desc">
+          The execution playbook: ICP, target subreddits, account structure, and 8 sprints from account warmup through moderator partnership — plus 4 AI-visibility plays for Google AI Overviews, Reddit Answers, and LLM citations.
+        </div>
+        <div class="tags">
+          <span class="tag tag-accent">Go-to-Market</span>
+          <span class="tag tag-blue">Content Strategy</span>
+          <span class="tag tag-gold">AI Visibility</span>
+        </div>
+        <a class="openlink" href="Agen_Reddit_Marketing_Roadmap.html">Open full roadmap →</a>
+      </div>
+      <div class="rcard-right">
+        <div class="roadmap-list">
+          <div class="rm-row">
+            <div class="rm-icon">🎯</div>
+            <div>
+              <div class="rm-head">North Star — rank in Google Search or get cited by LLMs</div>
+              <div class="rm-note">Reddit feeds Google's AI Overviews and is increasingly the corpus LLMs cite for "how do I secure MCP" — agen.co picks one outcome to run the whole program against.</div>
+            </div>
+          </div>
+          <div class="rm-row">
+            <div class="rm-icon">🔥</div>
+            <div>
+              <div class="rm-head">Warm up every account before any brand mention (Sprint 1)</div>
+              <div class="rm-note">r/cybersecurity and r/netsec enforce karma/age minimums — a history-less account reads as suspicious in a security community regardless of what it says.</div>
+            </div>
+          </div>
+          <div class="rm-row">
+            <div class="rm-icon">🏛️</div>
+            <div>
+              <div class="rm-head">Concentrate early authority in r/cybersecurity and r/mcp (Sprint 4)</div>
+              <div class="rm-note">Genuinely useful, zero-promo incident/architecture answers earn trust here — this community punishes anything that smells like marketing.</div>
+            </div>
+          </div>
+          <div class="rm-row">
+            <div class="rm-icon">🏠</div>
+            <div>
+              <div class="rm-head">Launch a problem-focused subreddit, not a brand one (Sprint 6)</div>
+              <div class="rm-note">r/AIAgentGovernance or r/AgenticAccessControl, not r/AgenCo — lets the right audience gather organically while agen.co moderates and shapes the conversation.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /reports -->
+
+</main>
+
+<footer>
+  <b>agen.co Reddit Intelligence Suite</b> · 4 reports · 573 threads pooled across competitor &amp; keyword searches · 3,451 comments · 33 subreddits scored · July 2026<br>
+  Data sourced from r/mcp, r/cybersecurity, r/AI_Agents, r/AI_Governance, r/LLMDevs, r/IBM, r/MCPservers, r/ClaudeCode and 25+ additional communities.
+</footer>
+
+</body>
+</html>
